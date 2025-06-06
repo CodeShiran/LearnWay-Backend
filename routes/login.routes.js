@@ -1,8 +1,6 @@
+import { userLogin } from '../controller/auth.controller.js'
 import express from 'express'
-
-import { addUser } from '../controller/auth.controller.js'
-
-export const authRouter = express.Router()
+export const loginRouter = express.Router()
 
 
-authRouter.post('/register', addUser)
+loginRouter.post('/login', userLogin)

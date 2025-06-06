@@ -1,14 +1,17 @@
-import express from 'express'
+import express, { json } from 'express'
 import './config/db.js'
 import { errorHandler } from './middleware/errorHandler.js'
 import { arcjetProtect } from './middleware/arcjet.js'
-import { authRouter } from './routes/login.routes.js'
+import { loginRouter } from './routes/login.routes.js'
+import { registerUser } from './controller/auth.controller.js'
 
 const app = express()
+app.use(express.json())
 
 
-app.use(arcjetProtect)
-app.use('/auth', authRouter)
+//app.use(arcjetProtect)
+app.use('/auth', loginRouter)
+app.use('/auth', registerUser)
 app.get('/user', (req, res) => {
     res.send('hello shiran')
 })
